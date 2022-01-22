@@ -31,7 +31,7 @@ export class TransactionService {
 
   saveToLocalStorage() {
     console.log(JSON.stringify(this._transactions));
-    localStorage.setItem("transactions", JSON.stringify(this._transactions));
+    localStorage.setItem("transactions", JSON.stringify(this._transactions).split("\"_").join("\""));
   }
 
   loadFromLocalStorage() {
