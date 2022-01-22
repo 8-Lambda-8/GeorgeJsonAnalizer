@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { objArrayToTransactionArray, objToTransaction, Transaction } from '../models/transaction';
 
-@Injectable({ 
+@Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
@@ -17,14 +17,12 @@ export class TransactionService {
   }
 
   public addJson(json: string) {
-    let importTransactions: Transaction[] = JSON.parse(json);
-
-    console.log(importTransactions[0].referenceNumber);
+    let importTransactions = objArrayToTransactionArray(JSON.parse(json));
 
     for (let transaction of importTransactions) {
       console.log(transaction)
       if (!this._transactions.some(o => o.referenceNumber == transaction.referenceNumber)) {
-        this.transactions.push(objToTransaction(transaction));
+        this.transactions.push(transaction);
       }
     };
 

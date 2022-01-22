@@ -3,7 +3,7 @@ import { Category } from "./category";
 import { IPartnerAccount, objToPartnerAccount, PartnerAccount } from "./partnerAccount"
 
 interface ITransaction {
-    booking: Date | string, valuation: Date | string, partnerName: string, partnerAccount: IPartnerAccount,
+    booking: Date | string, valuation: Date | string, partnerName: string | null, partnerAccount: IPartnerAccount | null,
     amount: IAmount, reference: string, referenceNumber: string, note: string, categories: Category | null,
     favorite: boolean, constantSymbol: string | null, variableSymbol: string | null, specificSymbol: string | null,
     receiverReference: string, receiverAddress: string | null, receiverName: string | null, receiverModeReference: string | null,
@@ -20,8 +20,8 @@ export class Transaction {
 
     private _booking: Date;
     private _valuation: Date;
-    private _partnerName: string;
-    private _partnerAccount: PartnerAccount;
+    private _partnerName: string | null;
+    private _partnerAccount: PartnerAccount | null;
     private _amount: Amount;
     private _reference: string;
     private _referenceNumber: string;
@@ -58,7 +58,7 @@ export class Transaction {
     private _pinEntry: string | null;
 
     constructor(
-        booking: Date | string, valuation: Date | string, partnerName: string, partnerAccount: PartnerAccount,
+        booking: Date | string, valuation: Date | string, partnerName: string | null, partnerAccount: PartnerAccount | null,
         amount: Amount, reference: string, referenceNumber: string, note: string, categories: Category | null,
         favorite: boolean, constantSymbol: string | null, variableSymbol: string | null, specificSymbol: string | null,
         receiverReference: string, receiverAddress: string | null, receiverName: string | null, receiverModeReference: string | null,
@@ -125,10 +125,10 @@ export class Transaction {
     public get valuation(): Date {
         return this._valuation;
     }
-    public get partnerName(): string {
+    public get partnerName(): string | null {
         return this._partnerName;
     }
-    public get partnerAccount(): PartnerAccount {
+    public get partnerAccount(): PartnerAccount | null {
         return this._partnerAccount;
     }
     public get amount(): Amount {
@@ -238,7 +238,7 @@ export class Transaction {
 
 export function objToTransaction(obj: ITransaction): Transaction {
 
-    return new Transaction(obj.booking, obj.valuation, obj.partnerName, objToPartnerAccount(obj.partnerAccount),
+    return new Transaction(obj.booking, obj.valuation, obj.partnerName, obj.partnerAccount==null?null:objToPartnerAccount(obj.partnerAccount),
         objToAmount(obj.amount), obj.reference, obj.referenceNumber, obj.note, obj.categories,
         obj.favorite, obj.constantSymbol, obj.variableSymbol, obj.specificSymbol,
         obj.receiverReference, obj.receiverAddress, obj.receiverName, obj.receiverModeReference,
@@ -251,10 +251,10 @@ export function objToTransaction(obj: ITransaction): Transaction {
         obj.paymentMethod, obj.pinEntry);
 }
 
-export function objArrayToTransactionArray(obj: ITransaction[]){
-    let array: Transaction[]=[];
-    for(let o of obj){
-        array.push(objToTransaction(o))
+export function objArrayToTransactionArray(obj: ITransaction[]) {
+    let array: Transaction[] = [];
+    for (let o of obj) {
+        array.push(objToTransaction(o));
     }
     return array;
 }
