@@ -1,1 +1,2 @@
-<input type="file" name="files" (change)="uploadFile($event)" />
+<input type="file" name="files" (change)="uploadFile($event)" accept=".json"/>
+<a class="btn btn-clear" title="Download JSON" [href]="generateDownloadJsonUri()" download="save.json">Save Json</a>
