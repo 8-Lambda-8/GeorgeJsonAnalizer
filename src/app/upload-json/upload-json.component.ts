@@ -36,4 +36,8 @@ export class UploadJsonComponent implements OnInit {
     return uri;
   }
 
+  deleteLocalStorage(){
+    this.transactionService.deleteLocalStorage();
+  }
+
 }
