@@ -234,6 +234,12 @@ export class Transaction {
         return this._pinEntry;
     }
 
+
+    //SETTER
+    public set categories(categories: Category |null){
+        this._categories = categories;
+    }
+
 }
 
 export function objToTransaction(obj: ITransaction): Transaction {
