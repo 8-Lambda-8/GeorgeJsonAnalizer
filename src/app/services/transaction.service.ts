@@ -39,4 +39,8 @@ export class TransactionService {
     if (stored == null) return;
     this._transactions = objArrayToTransactionArray(JSON.parse(stored));
   }
+
+  deleteLocalStorage(){
+    localStorage.removeItem("transactions");
+  }
 }
