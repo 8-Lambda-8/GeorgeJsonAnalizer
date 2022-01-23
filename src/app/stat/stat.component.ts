@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Transaction } from '../models/transaction';
-import { TransactionService } from "../services/transaction.service";
+import { CategorifierService } from '../services/categorifier/categorifier.service';
+import { TransactionService } from "../services/transaction/transaction.service";
 
 
 @Component({
@@ -11,9 +12,15 @@ import { TransactionService } from "../services/transaction.service";
 export class StatComponent implements OnInit {
 
   n: Transaction[];
+  categorifier: CategorifierService;
 
-  constructor(private transactionService: TransactionService) {
-    this.n = this.transactionService.transactions
+  constructor(private transactionService: TransactionService, private categorifierService: CategorifierService) {
+    this.n = this.transactionService.transactions;
+    this.categorifier = categorifierService;
+  }
+
+  public updateCategories(){
+    this.categorifier.determineAndAssignCategories(this.n);
   }
 
   ngOnInit(): void {

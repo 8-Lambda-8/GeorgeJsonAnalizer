@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { objArrayToTransactionArray, objToTransaction, Transaction } from '../models/transaction';
+import { objArrayToTransactionArray, objToTransaction, Transaction } from '../../models/transaction';
 
 @Injectable({
   providedIn: 'root'

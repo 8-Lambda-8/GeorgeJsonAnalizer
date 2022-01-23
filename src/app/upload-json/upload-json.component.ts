@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { TransactionService } from "../services/transaction.service";
+import { TransactionService } from "../services/transaction/transaction.service";
 
 @Component({
   selector: 'app-upload-json',
