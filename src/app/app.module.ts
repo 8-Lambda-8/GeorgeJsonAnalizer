@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UploadJsonComponent } from './upload-json/upload-json.component';
 import { StatComponent } from './stat/stat.component';
 import { TransactionViewComponent } from './transaction-view/transaction-view.component';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { TransactionViewComponent } from './transaction-view/transaction-view.co
     UploadJsonComponent,
     StatComponent,
     TransactionViewComponent,
+    TransactionListComponent,
   ],
   imports: [
     BrowserModule,
