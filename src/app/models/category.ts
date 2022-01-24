@@ -720,3 +720,38 @@ export function subCategoryById(id: number): ICategory {
     if (cats == undefined) return unkategorisiert
     return cats.find(x => x.id == id) ?? unkategorisiert
 };
+
+export function addCategory(subOf: number | null, newCategory: ICategory) {
+    if (newCategory.id != null) return;
+
+    //check if ident is not used
+    let idents = Object.keys(categoryIds);
+    for (let subIdents of Object.keys(Object.values(categoryIds))) {
+        idents.push(subIdents)
+    }
+    console.log(idents)
+    if (idents.includes(newCategory.ident)) {
+        console.error("ident already exists")
+        return;
+    }
+    if (subOf == null) {
+        newCategory.id = categoryTreeList[-3].id;
+        if (newCategory.id == null) return;
+        if (newCategory.id < 50) newCategory.id = 49;
+        newCategory.id += 1;
+        categoryTreeList.push(newCategory)
+    } else if (Number.isInteger(subOf)) {
+        let otherSubCats = categoryTreeList[Math.floor(subOf)].sub;
+        if (otherSubCats == undefined) {
+            console.error("sub category of this parrent not allowed");
+            return;
+        }
+        newCategory.id = otherSubCats[-2].id;
+        if (newCategory.id == null) return;
+        if (newCategory.id < Math.floor(subOf) + .50) newCategory.id = Math.floor(subOf) + .49;
+        newCategory.id += .01;
+        categoryTreeList.push(newCategory)
+    } else {
+        console.error("subOf is sub category")
+    }
+}
