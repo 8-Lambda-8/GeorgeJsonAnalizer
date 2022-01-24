@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category, categoryTreeList } from '../models/category';
 import { Transaction } from '../models/transaction';
 import { CategorifierService } from '../services/categorifier/categorifier.service';
 import { TransactionService } from "../services/transaction/transaction.service";
@@ -19,11 +20,12 @@ export class StatComponent implements OnInit {
     this.categorifier = categorifierService;
   }
 
-  public updateCategories(){
+  public updateCategories() {
     this.categorifier.determineAndAssignCategories(this.n);
   }
 
   ngOnInit(): void {
+
   }
 
   numUncategorized(): number {
@@ -41,8 +43,8 @@ export class StatComponent implements OnInit {
   inAll(): string {
     let _in = 0;
     for (let t of this.n) {
-      if (t.amount.value>0) 
-      _in += t.amount.valueFloat
+      if (t.amount.value > 0)
+        _in += t.amount.valueFloat
     }
     return _in.toLocaleString('de-DE', { style: 'currency', currency: "EUR" });
   }
@@ -50,7 +52,7 @@ export class StatComponent implements OnInit {
   outAll(): string {
     let out = 0;
     for (let t of this.n) {
-      if (t.amount.value<0) 
+      if (t.amount.value < 0)
         out += t.amount.valueFloat
     }
     return out.toLocaleString('de-DE', { style: 'currency', currency: "EUR" });

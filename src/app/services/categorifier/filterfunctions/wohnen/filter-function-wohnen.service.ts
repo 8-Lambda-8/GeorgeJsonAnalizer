@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { cat, Category, subcat_wohnen } from 'src/app/models/category';
+import { Category, categoryIds} from 'src/app/models/category';
 import { Transaction } from 'src/app/models/transaction';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class FilterFunctionWohnenService {
 
     //just a basic filter as an example
     if(transaction.partnerName == "JET 0275"){
-      return new Category(cat.wohnen, subcat_wohnen.miete);
+      return new Category(categoryIds.wohnen.miete);
     }
     return null;
   }
