@@ -1,7 +1,7 @@
 <div class="container">
     <div class="date">{{transaction.booking.toLocaleDateString("de-DE")}}</div>
     <div class="partnerName">{{transaction.partnerName}}</div>
-    <div class="reference">{{transaction.reference}}</div>
+    <div class="reference">{{transaction.info}}</div>
     <div class="category">{{transaction.categories==null?"Unkategorisiert":transaction.categories.categoryName}}</div>
     <div class="amount">{{transaction.amount.getFormated()}}</div>
 </div>

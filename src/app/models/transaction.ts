@@ -234,6 +234,17 @@ export class Transaction {
         return this._pinEntry;
     }
 
+    public get info(): string {
+        let split = this._reference.split(" ", 6);
+        split.push(this._reference.split(" ").slice(6,).join(" "));
+        if (split[0] == "POS") {
+            return "Bezahlt mit Karte " + split[3] + " am " + split[4] + " um " + split[5];
+        } else if (split[0] == "SB-Eigenerlag") {
+            return "Einzahlung mit Karte " + split[2] + " am " + split[3].replace("/"," um ");
+        } else {
+            return this.reference;
+        }
+    }
 
     //SETTER
     public set categories(categories: Category |null){
