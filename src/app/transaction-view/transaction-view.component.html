@@ -1,7 +1,24 @@
-<div class="container">
+<div class="container" (click)="switchExpand()">
     <div class="date">{{transaction.booking.toLocaleDateString("de-DE")}}</div>
     <div class="partnerName">{{transaction.partnerName}}</div>
     <div class="reference">{{transaction.info}}</div>
-    <div class="category">{{transaction.categories==null?"Unkategorisiert":transaction.categories.categoryName}}</div>
+    <div class="category" *ngIf="!expanded">
+        {{transaction.categories==null?"Unkategorisiert":transaction.categories.categoryName}}</div>
     <div class="amount">{{transaction.amount.getFormated()}}</div>
+
+    <div class="filler" *ngIf="expanded">&nbsp;</div>
+    <div class="col1" style="grid-row: 4;" *ngIf="expanded">Buchungs Reference</div>
+    <div class="col1" style="grid-row: 5;" *ngIf="expanded">Notiz</div>
+    <div class="col1" style="grid-row: 6;" *ngIf="expanded">Kategorie</div>
+    <div class="col1" style="grid-row: 7;" *ngIf="expanded">Buchungsdatum</div>
+    <div class="col1" style="grid-row: 8;" *ngIf="expanded">Valutation</div>
+    <div class="col1" style="grid-row: 9;" *ngIf="expanded">Referenz Nummer</div>
+
+    <div class="col2" style="grid-row: 4;" *ngIf="expanded">{{transaction.reference}}</div>
+    <div class="col2" style="grid-row: 5;" *ngIf="expanded">{{transaction.note}}</div>
+    <div class="col2" style="grid-row: 6;" *ngIf="expanded">
+        {{transaction.categories==null?"Unkategorisiert":transaction.categories.categoryName}}</div>
+    <div class="col2" style="grid-row: 7;" *ngIf="expanded">{{transaction.booking}}</div>
+    <div class="col2" style="grid-row: 8;" *ngIf="expanded">{{transaction.valuation}}</div>
+    <div class="col2" style="grid-row: 9;" *ngIf="expanded">{{transaction.referenceNumber}}</div>
 </div>

@@ -2,8 +2,12 @@
     min-height: 60px;
     width: 100%;
     display: grid;
-    grid-template-columns: 15% 60% 25%; 
+    grid-template-columns: 20% 55% 25%;
     grid-template-rows: 20px;
+}
+
+.container:hover {
+    background: lightgray;
 }
 
 .date {
@@ -31,4 +35,23 @@
     text-align: end;
     grid-column: 3;
     grid-row: 1;
+}
+
+.filler {
+    grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    border-bottom: black 1px solid;
+}
+
+.col1 {
+    grid-column: 1;
+}
+
+.col2 {
+    grid-column: 2;
+}
+
+.col3 {
+    grid-column: 3;
 }

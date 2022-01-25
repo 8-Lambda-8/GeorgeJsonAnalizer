@@ -8,11 +8,17 @@ import { Transaction } from '../models/transaction';
   styleUrls: ['./transaction-view.component.scss']
 })
 export class TransactionViewComponent implements OnInit {
-  @Input() transaction: Transaction = new Transaction(new Date(),new Date(),null,null,new Amount(0),"","","",null,false,null,null,null,"",null,null,null,null,null,null,null,null,null,null,null,null,null,null,"","","","","",null,null,null,null,null);
+  @Input() transaction: Transaction = new Transaction(new Date(), new Date(), null, null, new Amount(0), "", "", "", null, false, null, null, null, "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, "", "", "", "", "", null, null, null, null, null);
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  expanded: boolean = false;
+
+  switchExpand() {
+    this.expanded = !this.expanded;
   }
 
 }
