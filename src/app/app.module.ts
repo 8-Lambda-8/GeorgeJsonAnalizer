@@ -11,6 +11,7 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { FilteredListComponent } from './filtered-list/filtered-list.component';
+import { AnalyzerComponent } from './analyzer/analyzer.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -29,6 +30,7 @@ import { MatListModule } from '@angular/material/list';
     NavComponent,
     HomeComponent,
     FilteredListComponent,
+    AnalyzerComponent,
   ],
   imports: [
     BrowserModule,
