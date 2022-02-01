@@ -9,6 +9,7 @@ import { StatComponent } from './stat/stat.component';
 import { TransactionViewComponent } from './transaction-view/transaction-view.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './home/home.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,6 +26,7 @@ import { MatListModule } from '@angular/material/list';
     TransactionViewComponent,
     TransactionListComponent,
     NavComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
