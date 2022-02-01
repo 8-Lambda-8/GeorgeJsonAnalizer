@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { HttpClientModule } from "@angular/common/http";
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { UploadJsonComponent } from './upload-json/upload-json.component';
@@ -42,6 +44,8 @@ import { AnalyzerComponent } from './analyzer/analyzer.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    HttpClientModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

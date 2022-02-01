@@ -14,7 +14,9 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>GeorgeJsonAnalizer</span>
+      <a href="" class="title">GeorgeJsonAnalizer</a>
+      <span class="spacer"></span>
+      <app-upload-json></app-upload-json>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
