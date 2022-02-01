@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { Transaction } from './models/transaction';
-import { TransactionService } from './services/transaction/transaction.service';
-
 
 @Component({
   selector: 'app-root',
@@ -11,8 +8,8 @@ import { TransactionService } from './services/transaction/transaction.service';
 export class AppComponent {
   title = 'GeorgeJsonAnalizer';
 
-  transactions: Transaction[] = []
-  constructor(private transactionService: TransactionService) {
-    this.transactions = this.transactionService.transactions;
+  
+  constructor() {
+  
   }
 }
