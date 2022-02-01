@@ -8,6 +8,14 @@ import { UploadJsonComponent } from './upload-json/upload-json.component';
 import { StatComponent } from './stat/stat.component';
 import { TransactionViewComponent } from './transaction-view/transaction-view.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { NavComponent } from './nav/nav.component';
+
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -16,11 +24,18 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
     StatComponent,
     TransactionViewComponent,
     TransactionListComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
