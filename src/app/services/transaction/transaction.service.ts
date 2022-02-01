@@ -22,10 +22,12 @@ export class TransactionService {
     for (let transaction of importTransactions) {
       console.log(transaction)
       if (!this._transactions.some(o => o.referenceNumber == transaction.referenceNumber)) {
-        this.transactions.push(transaction);
+        this._transactions.push(transaction);
       }
     };
-
+    this._transactions = this._transactions.sort((t1, t2) => {
+      return t2.booking.getTime() - t1.booking.getTime();
+    });
     this.saveToLocalStorage();
   }
 
@@ -40,7 +42,7 @@ export class TransactionService {
     this._transactions = objArrayToTransactionArray(JSON.parse(stored));
   }
 
-  deleteLocalStorage(){
+  deleteLocalStorage() {
     localStorage.removeItem("transactions");
   }
 }
