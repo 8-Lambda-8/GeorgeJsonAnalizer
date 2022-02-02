@@ -19,5 +19,22 @@
     <mat-date-range-picker #picker></mat-date-range-picker>
 </div>
 
+<mat-form-field appearance="fill">
+    <mat-label>Resolution</mat-label>
+    <mat-select [(value)]="resolution">
+        <mat-option *ngFor="let resolution of resolutions" [value]="resolution">
+            {{resolution}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Diagram Type</mat-label>
+    <mat-select [(value)]="diagramType">
+        <mat-option *ngFor="let diagramType of diagramTypes" [value]="diagramType">
+            {{diagramType}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
 
 <app-transaction-list [transactions]="transactions"></app-transaction-list>

@@ -22,6 +22,15 @@ export class CashflowComponent implements OnInit {
   ];
 
   
+  resolution = 'Monthly';
+  resolutions: String[] = [
+    'Yearly',
+    'Monthly',
+    'Daily',
+  ];
+
+  diagramType: String = "Bar";
+  diagramTypes: String[] = ["Bar", "Line"];
 
   transactions: Transaction[] = [];
 
