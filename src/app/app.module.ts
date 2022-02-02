@@ -11,6 +11,11 @@ import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from "@angular/common/http";
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { UploadJsonComponent } from './upload-json/upload-json.component';
@@ -50,8 +55,15 @@ import { CashflowComponent } from './analyzer/cashflow/cashflow.component';
     HttpClientModule,
     MatMenuModule,
     MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Category } from 'src/app/models/category';
 import { objArrayToTransactionArray, objToTransaction, Transaction } from '../../models/transaction';
 
 @Injectable({
@@ -13,14 +14,12 @@ export class TransactionService {
 
   constructor() {
     this.loadFromLocalStorage();
-    console.log(this._transactions);
   }
 
   public addJson(json: string) {
     let importTransactions = objArrayToTransactionArray(JSON.parse(json));
 
     for (let transaction of importTransactions) {
-      console.log(transaction)
       if (!this._transactions.some(o => o.referenceNumber == transaction.referenceNumber)) {
         this._transactions.push(transaction);
       }
@@ -32,7 +31,6 @@ export class TransactionService {
   }
 
   saveToLocalStorage() {
-    console.log(JSON.stringify(this._transactions));
     localStorage.setItem("transactions", JSON.stringify(this._transactions).split("\"_").join("\""));
   }
 
@@ -45,4 +43,16 @@ export class TransactionService {
   deleteLocalStorage() {
     localStorage.removeItem("transactions");
   }
+
+  getFiltered(cats: Category[], start: Date, end: Date): Transaction[] {
+    return this._transactions.filter(t => {
+      if (cats.length>0 && !cats.some(c => t.categories?.categoryId == c.categoryId))
+        return false;
+      if (t.booking.getTime() < start.getTime() || t.booking.getTime() > end.getTime())
+        return false;
+
+      return true;
+    });
+  }
+
 }

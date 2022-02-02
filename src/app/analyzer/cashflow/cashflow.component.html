@@ -1,1 +1,23 @@
-<p>cashflow works!</p>
+<div #filter>
+    <mat-form-field appearance="fill">
+        <mat-label>Preset Date Ranges</mat-label>
+        <mat-select (selectionChange)="selectChange($event.value)" [(value)]="selectedPreset">
+            <mat-option *ngFor="let dateRange of dateRanges" [value]="dateRange">
+                {{dateRange}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start date" [(ngModel)]="startDate" (dateChange)="updateTransactions()">
+            <input matEndDate placeholder="End date" [(ngModel)]="endDate" (dateChange)="updateTransactions()">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+</div>
+
+
+<app-transaction-list [transactions]="transactions"></app-transaction-list>
