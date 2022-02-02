@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HttpClientModule } from "@angular/common/http";
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { UploadJsonComponent } from './upload-json/upload-json.component';
@@ -20,6 +21,7 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { FilteredListComponent } from './filtered-list/filtered-list.component';
 import { AnalyzerComponent } from './analyzer/analyzer.component';
+import { CashflowComponent } from './analyzer/cashflow/cashflow.component';
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { AnalyzerComponent } from './analyzer/analyzer.component';
     HomeComponent,
     FilteredListComponent,
     AnalyzerComponent,
+    CashflowComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { AnalyzerComponent } from './analyzer/analyzer.component';
     MatListModule,
     HttpClientModule,
     MatMenuModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
