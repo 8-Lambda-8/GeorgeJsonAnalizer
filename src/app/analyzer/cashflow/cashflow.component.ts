@@ -17,7 +17,9 @@ export class CashflowComponent implements OnInit {
   dateRanges: String[] = [
     'Custom',
     'This Year', 'Last Year', '1 Year',
+    '2 Years', '3 Years',
     'This Month', 'Last Month', '1 Month',
+    '3 Months', '6 Months', '9 Months',
     'All'
   ];
 
@@ -68,6 +70,18 @@ export class CashflowComponent implements OnInit {
 
         this.startDate.setFullYear(this.startDate.getFullYear() - 1);
         break;
+      case '2 Years':
+        this.startDate = new Date();
+        this.endDate = new Date();
+
+        this.startDate.setFullYear(this.startDate.getFullYear() - 2);
+        break;
+      case '3 Years':
+        this.startDate = new Date();
+        this.endDate = new Date();
+
+        this.startDate.setFullYear(this.startDate.getFullYear() - 3);
+        break;
       case 'This Month':
         this.startDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
         this.endDate = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
@@ -82,8 +96,26 @@ export class CashflowComponent implements OnInit {
 
         this.startDate.setMonth(this.startDate.getMonth() - 1);
         break;
+      case '3 Months':
+        this.startDate = new Date();
+        this.endDate = new Date();
+
+        this.startDate.setMonth(this.startDate.getMonth() - 4);
+        break;
+      case '6 Months':
+        this.startDate = new Date();
+        this.endDate = new Date();
+
+        this.startDate.setMonth(this.startDate.getMonth() - 7);
+        break;
+      case '9 Months':
+        this.startDate = new Date();
+        this.endDate = new Date();
+
+        this.startDate.setMonth(this.startDate.getMonth() - 10);
+        break;
       case 'All':
-        this.startDate = new Date(0);
+        this.startDate = this.transactionservice.getEarlyestDate();
         this.endDate = new Date();
         break;
       default:
