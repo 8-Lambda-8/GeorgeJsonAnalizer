@@ -126,9 +126,7 @@ export class CashflowComponent implements OnInit {
 
         for (let t of this.transactions.filter(t => { return t.booking.getFullYear() == month.getFullYear() && t.booking.getMonth() == month.getMonth() })) {
           if (this.diagramType == "bar") { //do bar stuff
-            this.ChartData.datasets[1].data.push(0);
             this.ChartData.datasets[t.amount.valueFloat > 0 ? 0 : 1].data[this.ChartData.datasets[0].data.length - 1] += Math.abs(t.amount.valueFloat)
-
           } else if (this.diagramType == "line") { //do line stuff
           }
         }
@@ -141,7 +139,6 @@ export class CashflowComponent implements OnInit {
 
         for (let t of this.transactions.filter(t => { return t.booking.getFullYear() == day.getFullYear() && t.booking.getMonth() == day.getMonth() && t.booking.getDate() == day.getDate() })) {
           if (this.diagramType == "bar") { //do bar stuff
-            this.ChartData.datasets[1].data.push(0);
             this.ChartData.datasets[t.amount.valueFloat > 0 ? 0 : 1].data[this.ChartData.datasets[0].data.length - 1] += Math.abs(t.amount.valueFloat)
           } else if (this.diagramType == "line") { //do line stuff
           }
