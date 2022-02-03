@@ -111,9 +111,9 @@ export class CashflowComponent implements OnInit {
         this.ChartData.datasets[0].data.push(0);
         this.ChartData.datasets[1].data.push(0);
 
-        for (let i = this.transactions.findIndex(t => t.booking.getFullYear() == year); i < this.transactions.length && this.transactions[i].booking.getFullYear() == year; i++) {
+        for (let t of this.transactions.filter(t => t.booking.getFullYear() == year)) {
           if (this.diagramType == "bar") { //do bar stuff
-            this.ChartData.datasets[this.transactions[i].amount.valueFloat > 0 ? 0 : 1].data[this.ChartData.datasets[0].data.length - 1] += Math.abs(this.transactions[i].amount.valueFloat)
+            this.ChartData.datasets[t.amount.valueFloat > 0 ? 0 : 1].data[this.ChartData.datasets[0].data.length - 1] += Math.abs(t.amount.valueFloat)
           } else if (this.diagramType == "line") { //do line stuff
           }
         }
