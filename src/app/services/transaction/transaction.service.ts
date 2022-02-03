@@ -46,13 +46,17 @@ export class TransactionService {
 
   getFiltered(cats: Category[], start: Date, end: Date): Transaction[] {
     return this._transactions.filter(t => {
-      if (cats.length>0 && !cats.some(c => t.categories?.categoryId == c.categoryId))
+      if (cats.length > 0 && !cats.some(c => t.categories?.categoryId == c.categoryId))
         return false;
       if (t.booking.getTime() < start.getTime() || t.booking.getTime() > end.getTime())
         return false;
 
       return true;
     });
+  }
+
+  getEarlyestDate(): Date {
+    return this._transactions[this._transactions.length-1].booking
   }
 
 }

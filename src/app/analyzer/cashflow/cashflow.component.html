@@ -37,4 +37,10 @@
     </mat-select>
 </mat-form-field>
 
+<canvas baseChart 
+    [data]="ChartData"
+    [type]="diagramType"
+    [options]="ChartOptions">
+</canvas>
+
 <app-transaction-list [transactions]="transactions"></app-transaction-list>

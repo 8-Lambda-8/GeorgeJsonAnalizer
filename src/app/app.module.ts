@@ -16,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { UploadJsonComponent } from './upload-json/upload-json.component';
@@ -60,6 +61,7 @@ import { CashflowComponent } from './analyzer/cashflow/cashflow.component';
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
+    NgChartsModule,
   ],
   providers: [
     MatDatepickerModule,
