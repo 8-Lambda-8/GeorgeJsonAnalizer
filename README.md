@@ -1,4 +1,4 @@
-# GeorgeJsonAnalizer
+# GeorgeJsonAnalyzer
 
 A tool to analyze the transaction history JSON files, you can download in the "George" netbanking platform of the Austrian Sparkasse.
 The goal of this Project is to have more features than the builtin "Finanz Manager" :D
