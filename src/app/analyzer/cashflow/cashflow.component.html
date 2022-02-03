@@ -21,7 +21,7 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Resolution</mat-label>
-    <mat-select [(value)]="resolution">
+    <mat-select [(value)]="resolution" (selectionChange)="updateTransactions()">
         <mat-option *ngFor="let resolution of resolutions" [value]="resolution">
             {{resolution}}
         </mat-option>
@@ -30,7 +30,7 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Diagram Type</mat-label>
-    <mat-select [(value)]="diagramType">
+    <mat-select [(value)]="diagramType" (selectionChange)="updateTransactions()">
         <mat-option *ngFor="let diagramType of diagramTypes" [value]="diagramType">
             {{diagramType}}
         </mat-option>
