@@ -104,7 +104,6 @@ export class CashflowComponent implements OnInit {
 
     this.ChartData.datasets[1].hidden = this.diagramType == "line"
 
-    //TODO: Implement Line stuff
     if (this.resolution == "Yearly") {
       for (let year = this.startDate.getFullYear(); year < this.endDate.getFullYear(); year++) {
         this.ChartData.labels?.push(year.toString());
@@ -115,6 +114,7 @@ export class CashflowComponent implements OnInit {
           if (this.diagramType == "bar") { //do bar stuff
             this.ChartData.datasets[t.amount.valueFloat > 0 ? 0 : 1].data[this.ChartData.datasets[0].data.length - 1] += Math.abs(t.amount.valueFloat)
           } else if (this.diagramType == "line") { //do line stuff
+            this.ChartData.datasets[0].data[this.ChartData.datasets[0].data.length - 1] += t.amount.valueFloat;
           }
         }
       }
@@ -128,6 +128,7 @@ export class CashflowComponent implements OnInit {
           if (this.diagramType == "bar") { //do bar stuff
             this.ChartData.datasets[t.amount.valueFloat > 0 ? 0 : 1].data[this.ChartData.datasets[0].data.length - 1] += Math.abs(t.amount.valueFloat)
           } else if (this.diagramType == "line") { //do line stuff
+            this.ChartData.datasets[0].data[this.ChartData.datasets[0].data.length - 1] += t.amount.valueFloat;
           }
         }
       }
@@ -141,6 +142,7 @@ export class CashflowComponent implements OnInit {
           if (this.diagramType == "bar") { //do bar stuff
             this.ChartData.datasets[t.amount.valueFloat > 0 ? 0 : 1].data[this.ChartData.datasets[0].data.length - 1] += Math.abs(t.amount.valueFloat)
           } else if (this.diagramType == "line") { //do line stuff
+            this.ChartData.datasets[0].data[this.ChartData.datasets[0].data.length - 1] += t.amount.valueFloat;
           }
         }
       }
