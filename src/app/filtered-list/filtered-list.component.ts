@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionService } from '../services/transaction/transaction.service';
-import { Transaction } from '../models/transaction';
+import { Filter } from '../filter/filter.component';
 
 @Component({
   selector: 'app-filtered-list',
@@ -9,9 +8,11 @@ import { Transaction } from '../models/transaction';
 })
 export class FilteredListComponent implements OnInit {
 
-  transactions: Transaction[] = []
-  constructor(private transactionService: TransactionService) {
-    this.transactions = this.transactionService.transactions;
+  filter: Filter;
+
+  constructor() {
+    let now = new Date();
+    this.filter = { transactions: [], categories: [], startDate: new Date(now.getFullYear() - 1, now.getMonth(), now.getDate()), endDate: now };
   }
 
   ngOnInit(): void {
