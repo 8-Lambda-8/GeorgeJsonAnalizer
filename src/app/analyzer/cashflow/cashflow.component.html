@@ -1,46 +1,27 @@
-<div #filter>
+<app-filter [(filter)]="filter" (filterChange)="updateChart()"></app-filter>
+<div #ChartModifier>
     <mat-form-field appearance="fill">
-        <mat-label>Preset Date Ranges</mat-label>
-        <mat-select (selectionChange)="selectChange($event.value)" [(value)]="selectedPreset">
-            <mat-option *ngFor="let dateRange of dateRanges" [value]="dateRange">
-                {{dateRange}}
+        <mat-label>Resolution</mat-label>
+        <mat-select [(value)]="resolution" (selectionChange)="updateChart()">
+            <mat-option *ngFor="let resolution of resolutions" [value]="resolution">
+                {{resolution}}
             </mat-option>
         </mat-select>
     </mat-form-field>
+
     <mat-form-field appearance="fill">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" [(ngModel)]="startDate" (dateChange)="updateTransactions()">
-            <input matEndDate placeholder="End date" [(ngModel)]="endDate" (dateChange)="updateTransactions()">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-label>Diagram Type</mat-label>
+        <mat-select [(value)]="diagramType" (selectionChange)="updateChart()">
+            <mat-option *ngFor="let diagramType of diagramTypes" [value]="diagramType">
+                {{diagramType}}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
-    <mat-date-range-picker #picker></mat-date-range-picker>
 </div>
-
-<mat-form-field appearance="fill">
-    <mat-label>Resolution</mat-label>
-    <mat-select [(value)]="resolution" (selectionChange)="updateTransactions()">
-        <mat-option *ngFor="let resolution of resolutions" [value]="resolution">
-            {{resolution}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
-
-<mat-form-field appearance="fill">
-    <mat-label>Diagram Type</mat-label>
-    <mat-select [(value)]="diagramType" (selectionChange)="updateTransactions()">
-        <mat-option *ngFor="let diagramType of diagramTypes" [value]="diagramType">
-            {{diagramType}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
-
 <canvas baseChart 
     [data]="ChartData"
     [type]="diagramType"
     [options]="ChartOptions">
 </canvas>
 
-<app-transaction-list [transactions]="transactions"></app-transaction-list>
+<app-transaction-list [transactions]="filter.transactions"></app-transaction-list>

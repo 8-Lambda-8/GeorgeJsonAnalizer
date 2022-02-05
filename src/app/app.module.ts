@@ -28,6 +28,7 @@ import { HomeComponent } from './home/home.component';
 import { FilteredListComponent } from './filtered-list/filtered-list.component';
 import { AnalyzerComponent } from './analyzer/analyzer.component';
 import { CashflowComponent } from './analyzer/cashflow/cashflow.component';
+import { FilterComponent } from './filter/filter.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { CashflowComponent } from './analyzer/cashflow/cashflow.component';
     FilteredListComponent,
     AnalyzerComponent,
     CashflowComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,
