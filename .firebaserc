@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "georgejsonanalyzer"
+  },
+  "targets": {
+    "georgejsonanalyzer": {
+      "hosting": {
+        "GeorgeJsonAnalyzer": [
+          "georgejsonanalyzer"
+        ]
+      }
+    }
+  }
+}
