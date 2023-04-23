@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Transaction } from '../../models/transaction';
 import { FilterFunctionWohnenService } from './filterfunctions/wohnen/filter-function-wohnen.service';
+import { FilterFunctionKommunikationService } from './filterfunctions/kommunikation/filter-function-kommunikation.service';
 import { TransactionService } from '../transaction/transaction.service'
 
 @Injectable({
@@ -13,8 +14,9 @@ export class CategorifierService {
 
   //TODO add all other filter (see categories)
 
-  constructor(wohnenFilter: FilterFunctionWohnenService) { 
+  constructor(private transactionService: TransactionService, wohnenFilter: FilterFunctionWohnenService, kommunikationFilter: FilterFunctionKommunikationService) { 
     wohnenFilter.getFilter().forEach(filter => this.filterFunctions.push(filter));
+    kommunikationFilter.getFilter().forEach(filter => this.filterFunctions.push(filter));
   }
 
   private getMatchFromBasicRegex(transaction: Transaction): Category | null {
