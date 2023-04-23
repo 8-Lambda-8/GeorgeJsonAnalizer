@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { Transaction } from '../../models/transaction';
 import { FilterFunctionWohnenService } from './filterfunctions/wohnen/filter-function-wohnen.service';
+import { TransactionService } from '../transaction/transaction.service'
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,7 @@ export class CategorifierService {
       transactions.forEach(transaction => {
           transaction.categories = this.getMatchFromBasicRegex(transaction);
       });
+      this.transactionService.saveToLocalStorage();
   }
 
 }
