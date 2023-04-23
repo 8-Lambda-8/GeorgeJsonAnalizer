@@ -32,6 +32,7 @@ export class CategorifierService {
   
   public determineAndAssignCategories(transactions: Transaction[]){
       transactions.forEach(transaction => {
+          if(transaction.categories) return;
           transaction.categories = this.getMatchFromBasicRegex(transaction);
       });
       this.transactionService.saveToLocalStorage();
