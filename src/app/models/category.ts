@@ -11,7 +11,10 @@ export class Category {
 
     constructor(id: number) {
         this._categoryId = id;
-        this._categoryName = subCategoryById(id).name;
+        if (Math.floor(id) == id)
+            this._categoryName = categoryById(id).name;
+        else
+            this._categoryName = subCategoryById(id).name;
     }
 
     public get categoryId(): number {
@@ -715,10 +718,14 @@ export var categoryIds = {
     unkategorisiert: unkategorisiert
 };
 
+export function categoryById(id: number): ICategory {
+    return categoryTreeList.find(cat => cat.id == id) ?? unkategorisiert;
+};
+
 export function subCategoryById(id: number): ICategory {
     let cats = categoryTreeList.find(x => x.id == Math.floor(id))?.sub;
-    if (cats == undefined) return unkategorisiert
-    return cats.find(x => x.id == id) ?? unkategorisiert
+    if (cats == undefined) return unkategorisiert;
+    return cats.find(x => x.id == id) ?? unkategorisiert;
 };
 
 export function addCategory(subOf: number | null, newCategory: ICategory) {
@@ -727,11 +734,11 @@ export function addCategory(subOf: number | null, newCategory: ICategory) {
     //check if ident is not used
     let idents = Object.keys(categoryIds);
     for (let subIdents of Object.keys(Object.values(categoryIds))) {
-        idents.push(subIdents)
+        idents.push(subIdents);
     }
     console.log(idents)
     if (idents.includes(newCategory.ident)) {
-        console.error("ident already exists")
+        console.error("ident already exists");
         return;
     }
     if (subOf == null) {
@@ -750,8 +757,8 @@ export function addCategory(subOf: number | null, newCategory: ICategory) {
         if (newCategory.id == null) return;
         if (newCategory.id < Math.floor(subOf) + .50) newCategory.id = Math.floor(subOf) + .49;
         newCategory.id += .01;
-        categoryTreeList.push(newCategory)
+        categoryTreeList.push(newCategory);
     } else {
-        console.error("subOf is sub category")
+        console.error("subOf is sub category");
     }
 }
