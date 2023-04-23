@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core'; import { Category } from '../models/category';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { MatOptionSelectionChange } from '@angular/material/core';
+import { Category, categoryTreeList, ICategory } from '../models/category';
 import { Transaction } from '../models/transaction';
 import { TransactionService } from '../services/transaction/transaction.service';
 
@@ -28,6 +30,8 @@ export class FilterComponent implements OnInit {
     'All'
   ];
 
+  categoryTreeList = categoryTreeList;
+
   constructor(
     private transactionservice: TransactionService,
   ) {
@@ -35,15 +39,15 @@ export class FilterComponent implements OnInit {
     this.filter = { transactions: [], categories: [], startDate: new Date(now.getFullYear() - 1, now.getMonth(), now.getDate()), endDate: now };
   }
   ngOnInit(): void {
-    this.selectChange(this.selectedPreset);
+    this.selectDateRangeChange(this.selectedPreset);
   }
 
   updateTransactions() {
-    this.filter.transactions = this.transactionservice.getFiltered([], this.filter.startDate, this.filter.endDate);
+    this.filter.transactions = this.transactionservice.getFiltered(this.filter.categories, this.filter.startDate, this.filter.endDate);
     this.filterChange.emit(this.filter);
   }
 
-  selectChange(value: string) {
+  selectDateRangeChange(value: string) {
     switch (value) {
       case 'This Year':
         this.filter.startDate = new Date(new Date().getFullYear(), 0, 1);
@@ -111,6 +115,49 @@ export class FilterComponent implements OnInit {
         break;
     }
     this.updateTransactions();
+  }
+
+  selectCategoryChange(cats: Category[]) {
+    console.log("cats", cats);
+    this.updateTransactions();
+  }
+
+  parrentCatSelectionChanged(selChange: MatOptionSelectionChange<Category>) {
+    //console.log(selChange.source)
+    let cat: Category = selChange.source.value;
+    //this.filter.categories.some(c => c.categoryId == cat.categoryId)
+
+    let subs = categoryTreeList.find(c => cat.categoryId == c.id)?.sub ?? []
+    if (selChange.source.selected) {
+      console.log("selected Parrent", cat);
+      for (const c of subs) {
+        let i = this.filter.categories.findIndex(cc => cc.categoryId == c.id);
+        console.log(i, c.id)
+        if (c.id != null) {
+          i === -1 ? this.filter.categories.push(new Category(c.id)) : null;
+        }
+      }
+    } else {
+      console.log("deselected Parrent", cat);
+      for (const c of subs) {
+        let i = this.filter.categories.findIndex(cc => cc.categoryId == c.id);
+        if (c.id != null && i !== -1) {
+          this.filter.categories.splice(i, 1)
+        }
+      }
+    }
+    console.log(this.filter.categories);
+  }
+  subCatSelectionChanged(selChange: MatOptionSelectionChange<Category>) {
+    if (selChange.source.selected) {
+
+    } else {
+
+    }
+  }
+
+  ICatToCat(cat: ICategory): Category {
+    return new Category(cat.id ?? 99);
   }
 
 }

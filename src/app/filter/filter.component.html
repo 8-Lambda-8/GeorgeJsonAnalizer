@@ -1,6 +1,20 @@
 <mat-form-field appearance="fill">
+    <mat-label>Categories</mat-label>
+    <mat-select (selectionChange)="selectCategoryChange($event.value)" [(value)]="filter.categories" multiple>
+        <div *ngFor="let category of categoryTreeList">
+            <mat-option [value]="ICatToCat(category)" (onSelectionChange)="parrentCatSelectionChanged($event)">
+                {{category.name}}
+            </mat-option>
+            <mat-option class="sub" *ngFor="let sub of category.sub" [value]="ICatToCat(sub)" (onSelectionChange)="subCatSelectionChanged($event)">
+                {{sub.name}}
+            </mat-option>
+        </div>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
     <mat-label>Preset Date Ranges</mat-label>
-    <mat-select (selectionChange)="selectChange($event.value)" [(value)]="selectedPreset">
+    <mat-select (selectionChange)="selectDateRangeChange($event.value)" [(value)]="selectedPreset">
         <mat-option *ngFor="let dateRange of dateRanges" [value]="dateRange">
             {{dateRange}}
         </mat-option>
