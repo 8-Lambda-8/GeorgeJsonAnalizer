@@ -1,3 +1,5 @@
 <app-filter [(filter)]="filter"></app-filter>
-<div>{{filter.transactions.length}} transactions:</div>
-<app-transaction-list [transactions]="filter.transactions"></app-transaction-list>
+<div>{{ filter.transactions.length }} transactions:</div>
+<app-transaction-list
+  [transactions]="filter.transactions"
+></app-transaction-list>

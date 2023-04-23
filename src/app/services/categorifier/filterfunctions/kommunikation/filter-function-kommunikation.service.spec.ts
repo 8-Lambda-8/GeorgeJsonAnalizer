@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { FilterFunctionKommunikationService } from './filter-function-kommunikation.service';
+import { FilterFunctionKommunikationService } from "./filter-function-kommunikation.service";
 
-describe('FilterFunctionKommunikationService', () => {
+describe("FilterFunctionKommunikationService", () => {
   let service: FilterFunctionKommunikationService;
 
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('FilterFunctionKommunikationService', () => {
     service = TestBed.inject(FilterFunctionKommunikationService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

@@ -1,113 +1,149 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { MatOptionSelectionChange } from '@angular/material/core';
-import { Category, categoryTreeList, ICategory } from '../models/category';
-import { Transaction } from '../models/transaction';
-import { TransactionService } from '../services/transaction/transaction.service';
+import { Component, EventEmitter, Input, Output, OnInit } from "@angular/core";
+import { MatOptionSelectionChange } from "@angular/material/core";
+import { Category, categoryTreeList, ICategory } from "../models/category";
+import { Transaction } from "../models/transaction";
+import { TransactionService } from "../services/transaction/transaction.service";
 
 export interface Filter {
-  transactions: Transaction[],
-  categories: Category[],
-  startDate: Date,
-  endDate: Date,
+  transactions: Transaction[];
+  categories: Category[];
+  startDate: Date;
+  endDate: Date;
 }
 
 @Component({
-  selector: 'app-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss'],
+  selector: "app-filter",
+  templateUrl: "./filter.component.html",
+  styleUrls: ["./filter.component.scss"],
 })
 export class FilterComponent implements OnInit {
   @Input() filter: Filter;
   @Output() filterChange = new EventEmitter<Filter>();
 
-  selectedPreset: string = '1 Year';
+  selectedPreset = "1 Year";
   dateRanges: string[] = [
-    'Custom',
-    'This Year', 'Last Year', '1 Year',
-    '2 Years', '3 Years',
-    'This Month', 'Last Month', '1 Month',
-    '3 Months', '6 Months', '9 Months',
-    'All'
+    "Custom",
+    "This Year",
+    "Last Year",
+    "1 Year",
+    "2 Years",
+    "3 Years",
+    "This Month",
+    "Last Month",
+    "1 Month",
+    "3 Months",
+    "6 Months",
+    "9 Months",
+    "All",
   ];
 
   categoryTreeList = categoryTreeList;
 
-  constructor(
-    private transactionservice: TransactionService,
-  ) {
-    let now = new Date();
-    this.filter = { transactions: [], categories: [], startDate: new Date(now.getFullYear() - 1, now.getMonth(), now.getDate()), endDate: now };
+  constructor(private transactionservice: TransactionService) {
+    const now = new Date();
+    this.filter = {
+      transactions: [],
+      categories: [],
+      startDate: new Date(now.getFullYear() - 1, now.getMonth(), now.getDate()),
+      endDate: now,
+    };
   }
   ngOnInit(): void {
     this.selectDateRangeChange(this.selectedPreset);
   }
 
   updateTransactions() {
-    this.filter.transactions = this.transactionservice.getFiltered(this.filter.categories, this.filter.startDate, this.filter.endDate);
+    this.filter.transactions = this.transactionservice.getFiltered(
+      this.filter.categories,
+      this.filter.startDate,
+      this.filter.endDate
+    );
     this.filterChange.emit(this.filter);
   }
 
   selectDateRangeChange(value: string) {
     switch (value) {
-      case 'This Year':
+      case "This Year":
         this.filter.startDate = new Date(new Date().getFullYear(), 0, 1);
         this.filter.endDate = new Date(new Date().getFullYear() + 1, 0, 0);
         break;
-      case 'Last Year':
+      case "Last Year":
         this.filter.startDate = new Date(new Date().getFullYear() - 1, 0, 1);
         this.filter.endDate = new Date(new Date().getFullYear(), 0, 0);
         break;
-      case '1 Year':
+      case "1 Year":
         this.filter.startDate = new Date();
         this.filter.endDate = new Date();
 
-        this.filter.startDate.setFullYear(this.filter.startDate.getFullYear() - 1);
+        this.filter.startDate.setFullYear(
+          this.filter.startDate.getFullYear() - 1
+        );
         break;
-      case '2 Years':
+      case "2 Years":
         this.filter.startDate = new Date();
         this.filter.endDate = new Date();
 
-        this.filter.startDate.setFullYear(this.filter.startDate.getFullYear() - 2);
+        this.filter.startDate.setFullYear(
+          this.filter.startDate.getFullYear() - 2
+        );
         break;
-      case '3 Years':
+      case "3 Years":
         this.filter.startDate = new Date();
         this.filter.endDate = new Date();
 
-        this.filter.startDate.setFullYear(this.filter.startDate.getFullYear() - 3);
+        this.filter.startDate.setFullYear(
+          this.filter.startDate.getFullYear() - 3
+        );
         break;
-      case 'This Month':
-        this.filter.startDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
-        this.filter.endDate = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+      case "This Month":
+        this.filter.startDate = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          1
+        );
+        this.filter.endDate = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth() + 1,
+          0
+        );
         break;
-      case 'Last Month':
-        this.filter.startDate = new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1);
-        this.filter.endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 0);
+      case "Last Month":
+        this.filter.startDate = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth() - 1,
+          1
+        );
+        this.filter.endDate = new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          0
+        );
         break;
-      case '1 Month':
+      case "1 Month":
         this.filter.startDate = new Date();
         this.filter.endDate = new Date();
 
         this.filter.startDate.setMonth(this.filter.startDate.getMonth() - 1);
         break;
-      case '3 Months':
+      case "3 Months":
         this.filter.startDate = new Date();
         this.filter.endDate = new Date();
 
         this.filter.startDate.setMonth(this.filter.startDate.getMonth() - 4);
         break;
-      case '6 Months':
+      case "6 Months":
         this.filter.startDate = new Date();
         this.filter.endDate = new Date();
 
         this.filter.startDate.setMonth(this.filter.startDate.getMonth() - 7);
         break;
-      case '9 Months':
+      case "9 Months":
         this.filter.startDate = new Date();
         this.filter.endDate = new Date();
 
         this.filter.startDate.setMonth(this.filter.startDate.getMonth() - 10);
         break;
-      case 'All':
+      case "All":
         this.filter.startDate = this.transactionservice.getEarlyestDate();
         this.filter.endDate = new Date();
         break;
@@ -124,15 +160,18 @@ export class FilterComponent implements OnInit {
 
   parrentCatSelectionChanged(selChange: MatOptionSelectionChange<Category>) {
     //console.log(selChange.source)
-    let cat: Category = selChange.source.value;
+    const cat: Category = selChange.source.value;
     //this.filter.categories.some(c => c.categoryId == cat.categoryId)
 
-    let subs = categoryTreeList.find(c => cat.categoryId == c.id)?.sub ?? []
+    const subs =
+      categoryTreeList.find((c) => cat.categoryId == c.id)?.sub ?? [];
     if (selChange.source.selected) {
       console.log("selected Parrent", cat);
       for (const c of subs) {
-        let i = this.filter.categories.findIndex(cc => cc.categoryId == c.id);
-        console.log(i, c.id)
+        const i = this.filter.categories.findIndex(
+          (cc) => cc.categoryId == c.id
+        );
+        console.log(i, c.id);
         if (c.id != null) {
           i === -1 ? this.filter.categories.push(new Category(c.id)) : null;
         }
@@ -140,9 +179,11 @@ export class FilterComponent implements OnInit {
     } else {
       console.log("deselected Parrent", cat);
       for (const c of subs) {
-        let i = this.filter.categories.findIndex(cc => cc.categoryId == c.id);
+        const i = this.filter.categories.findIndex(
+          (cc) => cc.categoryId == c.id
+        );
         if (c.id != null && i !== -1) {
-          this.filter.categories.splice(i, 1)
+          this.filter.categories.splice(i, 1);
         }
       }
     }
@@ -150,14 +191,11 @@ export class FilterComponent implements OnInit {
   }
   subCatSelectionChanged(selChange: MatOptionSelectionChange<Category>) {
     if (selChange.source.selected) {
-
     } else {
-
     }
   }
 
   ICatToCat(cat: ICategory): Category {
     return new Category(cat.id ?? 99);
   }
-
 }

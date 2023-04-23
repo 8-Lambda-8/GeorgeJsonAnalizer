@@ -1,10 +1,6 @@
 {
   "hosting": {
     "public": "dist/george-json-analyzer",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }
