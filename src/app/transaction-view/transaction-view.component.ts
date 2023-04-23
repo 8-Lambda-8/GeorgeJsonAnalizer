@@ -21,4 +21,6 @@ export class TransactionViewComponent implements OnInit {
     this.expanded = !this.expanded;
   }
 
+  
+  dateformat = Intl.DateTimeFormat("de-DE");
 }
