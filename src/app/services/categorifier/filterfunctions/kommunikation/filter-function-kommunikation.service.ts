@@ -5,20 +5,21 @@ import { Transaction } from "src/app/models/transaction";
 @Injectable({
   providedIn: "root",
 })
-export class FilterFunctionWohnenService {
+export class FilterFunctionKommunikationService {
   //add all functions here
   filterFunctions: ((transaction: Transaction) => Category | null)[] = [
-    this.filterMiete,
+    this.filterTV,
   ];
 
   public getFilter(): ((transaction: Transaction) => Category | null)[] {
     return this.filterFunctions;
   }
 
-  private filterMiete(transaction: Transaction): Category | null {
+  private filterTV(transaction: Transaction): Category | null {
     //just a basic filter as an example
-    if (transaction.partnerName == "JET 0275") {
-      return new Category(categoryIds.wohnen.miete);
+
+    if (transaction.partnerName?.includes("NETFLIX")) {
+      return new Category(categoryIds.kommunikation.tv);
     }
     return null;
   }

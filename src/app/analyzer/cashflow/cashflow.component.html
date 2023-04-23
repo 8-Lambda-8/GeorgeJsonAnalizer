@@ -1,27 +1,34 @@
 <app-filter [(filter)]="filter" (filterChange)="updateChart()"></app-filter>
 <div #ChartModifier>
-    <mat-form-field appearance="fill">
-        <mat-label>Resolution</mat-label>
-        <mat-select [(value)]="resolution" (selectionChange)="updateChart()">
-            <mat-option *ngFor="let resolution of resolutions" [value]="resolution">
-                {{resolution}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Resolution</mat-label>
+    <mat-select [(value)]="resolution" (selectionChange)="updateChart()">
+      <mat-option *ngFor="let resolution of resolutions" [value]="resolution">
+        {{ resolution }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Diagram Type</mat-label>
-        <mat-select [(value)]="diagramType" (selectionChange)="updateChart()">
-            <mat-option *ngFor="let diagramType of diagramTypes" [value]="diagramType">
-                {{diagramType}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Diagram Type</mat-label>
+    <mat-select [(value)]="diagramType" (selectionChange)="updateChart()">
+      <mat-option
+        *ngFor="let diagramType of diagramTypes"
+        [value]="diagramType"
+      >
+        {{ diagramType }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
-<canvas baseChart 
-    [data]="ChartData"
-    [type]="diagramType"
-    [options]="ChartOptions">
+<canvas
+  baseChart
+  [data]="ChartData"
+  [type]="diagramType"
+  [options]="ChartOptions"
+>
 </canvas>
 
-<app-transaction-list [transactions]="filter.transactions"></app-transaction-list>
+<app-transaction-list
+  [transactions]="filter.transactions"
+></app-transaction-list>
