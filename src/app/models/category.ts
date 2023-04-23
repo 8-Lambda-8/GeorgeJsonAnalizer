@@ -29,13 +29,13 @@ export class Category {
   }
 }
 
-export var unkategorisiert: ICategory = {
+export const unkategorisiert: ICategory = {
   ident: "unkategorisiert",
   name: "Unkategorisiert",
   id: null,
 };
 
-export var categoryTreeList: ICategory[] = [
+export const categoryTreeList: ICategory[] = [
   {
     ident: "wohnen",
     name: "Wohnen & Energie",
@@ -581,7 +581,7 @@ export var categoryTreeList: ICategory[] = [
   unkategorisiert,
 ];
 
-export var categoryIds = {
+export const categoryIds = {
   wohnen: {
     id: 0,
     miete: 0.01,

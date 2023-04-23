@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Category } from "src/app/models/category";
 import {
   objArrayToTransactionArray,
-  objToTransaction,
   Transaction,
 } from "../../models/transaction";
 

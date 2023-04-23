@@ -191,7 +191,9 @@ export class FilterComponent implements OnInit {
   }
   subCatSelectionChanged(selChange: MatOptionSelectionChange<Category>) {
     if (selChange.source.selected) {
+      return;
     } else {
+      return;
     }
   }
 

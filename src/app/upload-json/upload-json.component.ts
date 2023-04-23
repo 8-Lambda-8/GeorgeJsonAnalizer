@@ -13,21 +13,24 @@ export class UploadJsonComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    return;
+  }
 
-  uploadFile(event: any) {
+  uploadFile(event: Event) {
     //if (event.target==null) return;
-    if (event.target.files.length !== 1) {
+    const input = event.target as HTMLInputElement;
+    if (input.files?.length !== 1) {
       console.error("No file selected");
     } else {
       const reader = new FileReader();
-      reader.onloadend = (e) => {
+      reader.onloadend = () => {
         // handle data processing
         if (reader.result != null) {
           this.transactionService.addJson(reader.result.toString());
         }
       };
-      reader.readAsText(event.target.files[0]);
+      reader.readAsText(input.files[0]);
     }
   }
 

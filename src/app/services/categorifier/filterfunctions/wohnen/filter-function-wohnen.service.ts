@@ -23,5 +23,7 @@ export class FilterFunctionWohnenService {
     return null;
   }
 
-  constructor() {}
+  constructor() {
+    return;
+  }
 }

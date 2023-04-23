@@ -9,7 +9,11 @@ import { Transaction } from "../models/transaction";
 export class TransactionListComponent implements OnInit {
   @Input() transactions: Transaction[] = [];
 
-  constructor() {}
+  constructor() {
+    return;
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    return;
+  }
 }

@@ -49,9 +49,13 @@ export class TransactionViewComponent implements OnInit {
     null
   );
 
-  constructor() {}
+  constructor() {
+    return;
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    return;
+  }
 
   expanded = false;
 

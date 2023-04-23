@@ -19,5 +19,7 @@ export class FilteredListComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    return;
+  }
 }

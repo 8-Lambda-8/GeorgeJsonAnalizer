@@ -24,5 +24,7 @@ export class FilterFunctionKommunikationService {
     return null;
   }
 
-  constructor() {}
+  constructor() {
+    return;
+  }
 }

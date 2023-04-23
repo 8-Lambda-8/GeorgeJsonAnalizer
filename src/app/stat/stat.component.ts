@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Category, categoryTreeList } from "../models/category";
 import { Transaction } from "../models/transaction";
 import { CategorifierService } from "../services/categorifier/categorifier.service";
 import { TransactionService } from "../services/transaction/transaction.service";
@@ -25,7 +24,9 @@ export class StatComponent implements OnInit {
     this.categorifier.determineAndAssignCategories(this.n);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    return;
+  }
 
   numUncategorized(): number {
     return this.n.filter((t) => t.categories == null).length;
