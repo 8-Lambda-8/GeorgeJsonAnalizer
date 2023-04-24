@@ -2,7 +2,7 @@ import { Component, ViewChild } from "@angular/core";
 import { ChartConfiguration, ChartData, ChartType } from "chart.js";
 import { BaseChartDirective } from "ng2-charts";
 import { Filter } from "src/app/filter/filter.component";
-import { categoryTreeList, unkategorisiert } from "src/app/models/category";
+import { getColorArray, getLabelArray } from "src/app/models/category";
 
 @Component({
   selector: "app-category-cake",
@@ -40,12 +40,12 @@ export class CategoryCakeComponent {
   };
 
   ChartData: ChartData<"doughnut"> = {
-    labels: [],
+    labels: getLabelArray(),
     datasets: [
       {
-        data: [],
-        backgroundColor: [],
-        hoverOffset: 10,
+        data: new Array<number>(61).fill(0),
+        backgroundColor: getColorArray(),
+        hoverBackgroundColor: getColorArray(),
       },
     ],
   };
@@ -64,15 +64,7 @@ export class CategoryCakeComponent {
   updateChart() {
     if (this.filter === undefined) return;
 
-    this.ChartData.labels = new Array(61);
-    this.ChartData.datasets[0].data = new Array<number>(61).fill(0);
-
-    for (const c of categoryTreeList) {
-      if (c.id) this.ChartData.labels[c.id] = c.name;
-    }
-    this.ChartData.labels[60] = unkategorisiert.name;
-
-    console.log(this.ChartData.labels);
+    this.ChartData.datasets[0].data.fill(0);
 
     for (const t of this.filter.transactions) {
       if (t.categories) {
@@ -80,8 +72,6 @@ export class CategoryCakeComponent {
           t.amount.valueFloat;
       } else this.ChartData.datasets[0].data[60] += t.amount.valueFloat;
     }
-
-    console.log(this.ChartData.datasets[0].data[60]);
 
     this.chart?.update();
   }

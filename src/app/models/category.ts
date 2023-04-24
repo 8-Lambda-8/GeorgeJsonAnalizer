@@ -1,7 +1,9 @@
+import { Color } from "chart.js";
 export interface ICategory {
   ident: string;
   name: string;
   id: number | null;
+  color?: Color;
   sub?: ICategory[];
 }
 
@@ -33,6 +35,7 @@ export const unkategorisiert: ICategory = {
   ident: "unkategorisiert",
   name: "Unkategorisiert",
   id: null,
+  color: "hsl(0,0%,60%)",
 };
 
 export const categoryTreeList: ICategory[] = [
@@ -40,6 +43,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "wohnen",
     name: "Wohnen & Energie",
     id: 0,
+    color: "hsl(241,67%,60%)",
     sub: [
       {
         ident: "miete",
@@ -102,6 +106,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "essen",
     name: "Essen & Trinken",
     id: 1,
+    color: "hsl(103,100%,40%)",
     sub: [
       {
         ident: "einkauf",
@@ -124,6 +129,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "gesundheit",
     name: "Gesundheit & Drogerie",
     id: 2,
+    color: "hsl(103,100%,40%)",
     sub: [
       {
         ident: "drogerie",
@@ -166,6 +172,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "bekleidung",
     name: "Bekleidung & Schuhe",
     id: 3,
+    color: "hsl(180,50%,80%)",
     sub: [
       {
         ident: "bekleidung",
@@ -193,6 +200,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "kommunikation",
     name: "Kommunikation & Medien",
     id: 4,
+    color: "hsl(2,100%,40%)",
     sub: [
       {
         ident: "telefon",
@@ -225,6 +233,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "freizeit",
     name: "Freizeit & Hobby",
     id: 5,
+    color: "hsl(298,67%,61%)",
     sub: [
       {
         ident: "unterhaltung",
@@ -272,6 +281,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "bildung",
     name: "Bildung",
     id: 6,
+    color: "hsl(150,74%,34%)",
     sub: [
       {
         ident: "schule",
@@ -299,6 +309,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "kfz",
     name: "KFZ",
     id: 7,
+    color: "hsl(4,95%,61%)",
     sub: [
       {
         ident: "anschaffung",
@@ -341,6 +352,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "transport",
     name: "Öffis & Taxi",
     id: 8,
+    //color: "hsl(103,100%,40%)",
     sub: [
       {
         ident: "öffi",
@@ -348,7 +360,7 @@ export const categoryTreeList: ICategory[] = [
         id: 8.01,
       },
       {
-        ident: "maut",
+        ident: "taxi",
         name: "Taxi",
         id: 8.02,
       },
@@ -363,6 +375,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "bar",
     name: "Barabhebubng",
     id: 9,
+    color: "hsl(50,70%,98%)",
     sub: [
       {
         ident: "automat",
@@ -400,6 +413,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "unterhalt",
     name: "Unterhalt & Taschengeld",
     id: 10,
+    color: "hsl(200,72%,80%)",
     sub: [
       {
         ident: "taschengeld",
@@ -422,6 +436,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "online",
     name: "Online Shops",
     id: 11,
+    color: "hsl(218,78%,80%)",
     sub: [
       {
         ident: "unkategorisiert",
@@ -459,6 +474,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "sparen",
     name: "Sparen & Veranlagung",
     id: 12,
+    color: "hsl(80,100%,60%)",
     sub: [
       {
         ident: "ansparen",
@@ -491,6 +507,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "steuern",
     name: "Steuern",
     id: 13,
+    color: "hsl(25,99%,98%)",
     sub: [
       {
         ident: "einkommenssteuer",
@@ -513,6 +530,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "zahlung",
     name: "Zahlungsverkehr & Gebühren",
     id: 14,
+    color: "hsl(20,75%,69%)",
     sub: [
       {
         ident: "eigenüberträge",
@@ -545,6 +563,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "other",
     name: "Andere Ausgaben",
     id: 49,
+    color: "hsl(21,100%,40%)",
     sub: [
       {
         ident: "finanzierung",
@@ -588,6 +607,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "einkommen",
     name: "Einkommen",
     id: 50,
+    color: "hsl(93,75%,80%)",
     sub: [
       {
         ident: "gehalt",
@@ -635,6 +655,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "zusatzeinkommen",
     name: "Zusatzeinkommen",
     id: 51,
+    color: "hsl(200,50%,80%)",
     sub: [
       {
         ident: "vermietung",
@@ -697,6 +718,7 @@ export const categoryTreeList: ICategory[] = [
     ident: "otherEinkommen",
     name: "Sonstige Einkommen",
     id: 59,
+    color: "hsl(103,100%,40%)",
     sub: [
       {
         ident: "otherEinkommen",
@@ -919,4 +941,29 @@ export function addCategory(subOf: number | null, newCategory: ICategory) {
   } else {
     console.error("subOf is sub category");
   }
+}
+
+export function getLabelArray(/* subOfId?: number */) {
+  const lastId = (categoryTreeList.slice(-2)[0].id ?? 0) + 1;
+  const labels = new Array<string>(lastId + 1);
+
+  for (const cat of categoryTreeList) {
+    if (cat.id === null) labels[60] = cat.name;
+    else labels[cat.id] = cat.name;
+  }
+
+  return labels;
+}
+
+export function getColorArray(/* subOfId?: number */) {
+  const lastId = (categoryTreeList.slice(-2)[0].id ?? 0) + 1;
+  const colors = new Array<Color>(lastId + 1);
+
+  for (const cat of categoryTreeList) {
+    if (!cat.color) continue;
+    if (cat.id === null) colors[60] = cat.color;
+    else colors[cat.id] = cat.color;
+  }
+
+  return colors;
 }
