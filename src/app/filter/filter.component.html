@@ -1,4 +1,16 @@
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" *ngIf="filterFields.includes('direction')">
+  <mat-label>Direction</mat-label>
+  <mat-select
+    [(value)]="filter.direction"
+    (selectionChange)="updateTransactions()"
+  >
+    <mat-option value="in"> Eingänge </mat-option>
+    <mat-option value="out"> Ausgaben </mat-option>
+    <mat-option value="both" *ngIf="allowBothDirections"> Beides</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill" *ngIf="filterFields.includes('categories')">
   <mat-label>Categories</mat-label>
   <mat-select
     (selectionChange)="selectCategoryChange($event.value)"
@@ -24,7 +36,7 @@
   </mat-select>
 </mat-form-field>
 
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" *ngIf="filterFields.includes('time')">
   <mat-label>Preset Date Ranges</mat-label>
   <mat-select
     (selectionChange)="selectDateRangeChange($event.value)"
@@ -35,7 +47,7 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" *ngIf="filterFields.includes('time')">
   <mat-label>Enter a date range</mat-label>
   <mat-date-range-input
     [rangePicker]="picker"

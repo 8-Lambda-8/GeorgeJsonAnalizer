@@ -1,4 +1,8 @@
-<app-filter [(filter)]="filter"></app-filter>
+<app-filter
+  [(filter)]="filter"
+  [filterFields]="['direction', 'categories', 'time']"
+  [allowBothDirections]="true"
+></app-filter>
 <div>{{ filter.transactions.length }} transactions:</div>
 <app-transaction-list
   [transactions]="filter.transactions"

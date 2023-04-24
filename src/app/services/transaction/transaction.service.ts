@@ -53,8 +53,17 @@ export class TransactionService {
     localStorage.removeItem("transactions");
   }
 
-  getFiltered(cats: Category[], start: Date, end: Date): Transaction[] {
+  getFiltered(
+    cats: Category[],
+    start: Date,
+    end: Date,
+    direction?: "in" | "out" | "both"
+  ): Transaction[] {
     return this._transactions.filter((t) => {
+      if (direction && direction !== "both") {
+        if (t.amount.value > 0 && direction == "out") return false;
+        if (t.amount.value < 0 && direction == "in") return false;
+      }
       if (
         cats.length > 0 &&
         !cats.some((c) => t.categories?.categoryId == c.categoryId)
