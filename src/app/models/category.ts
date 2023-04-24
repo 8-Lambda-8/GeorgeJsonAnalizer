@@ -578,6 +578,128 @@ export const categoryTreeList: ICategory[] = [
       },
     ],
   },
+  // Income categories
+  {
+    ident: "einkommen",
+    name: "Einkommen",
+    id: 50,
+    sub: [
+      {
+        ident: "gehalt",
+        name: "Gehalt/Lohn",
+        id: 50.01,
+      },
+      {
+        ident: "pension",
+        name: "Pension",
+        id: 50.02,
+      },
+      {
+        ident: "gewerbe",
+        name: "Einkommen aus Gewerbe",
+        id: 50.03,
+      },
+      {
+        ident: "arbeitslosen",
+        name: "Arbeitslosenunterstützung",
+        id: 50.04,
+      },
+      {
+        ident: "karenz",
+        name: "Karenzgeld",
+        id: 50.05,
+      },
+      {
+        ident: "familie",
+        name: "Familienbeihilfe",
+        id: 50.06,
+      },
+      {
+        ident: "alimente",
+        name: "Alimente/Unterhalt",
+        id: 50.07,
+      },
+      {
+        ident: "einkommenOther",
+        name: "Sonstige regelmäßige Einkommen",
+        id: 50.99,
+      },
+    ],
+  },
+  {
+    ident: "zusatzeinkommen",
+    name: "Zusatzeinkommen",
+    id: 51,
+    sub: [
+      {
+        ident: "vermietung",
+        name: "Vermietung & Verpachtung",
+        id: 51.01,
+      },
+      {
+        ident: "bareinzahlung",
+        name: "Bareinzahlung",
+        id: 51.02,
+      },
+      {
+        ident: "reisespesen",
+        name: "Reisespesen, Überstunden, ...",
+        id: 51.03,
+      },
+      {
+        ident: "eigenüberträge",
+        name: "Eigenüberträge",
+        id: 51.04,
+      },
+      {
+        ident: "online",
+        name: "Online Shops",
+        id: 51.05,
+      },
+      {
+        ident: "rückerstattung",
+        name: "Rückerstattung",
+        id: 51.06,
+      },
+      {
+        ident: "zinsen",
+        name: "Dividenden & Zinsen",
+        id: 51.07,
+      },
+      {
+        ident: "crypto",
+        name: "Einnahmen aus Kryptowährungen",
+        id: 51.08,
+      },
+      {
+        ident: "invest",
+        name: "Einnahmen aus Investments",
+        id: 51.09,
+      },
+      {
+        ident: "savings",
+        name: "Einnahmen aus Sparvermögen",
+        id: 51.1,
+      },
+      {
+        ident: "zusatzeinkommenOther",
+        name: "Sonstige Zusatzeinkommen",
+        id: 51.99,
+      },
+    ],
+  },
+  {
+    ident: "otherEinkommen",
+    name: "Sonstige Einkommen",
+    id: 59,
+    sub: [
+      {
+        ident: "otherEinkommen",
+        name: "Sonstige Einkommen",
+        id: 59.01,
+      },
+    ],
+  },
   unkategorisiert,
 ];
 
@@ -715,6 +837,35 @@ export const categoryIds = {
     spenden: 49.05,
     strafen: 49.06,
     otherOther: 49.99,
+  },
+  einkommen: {
+    id: 50,
+    gehalt: 50.01,
+    pension: 50.02,
+    gewerbe: 50.03,
+    arbeitslosen: 50.04,
+    karenz: 50.05,
+    familie: 50.06,
+    alimente: 50.07,
+    einkommenOther: 50.99,
+  },
+  zusatzeinkommen: {
+    id: 51,
+    vermietung: 51.01,
+    bareinzahlung: 51.02,
+    reisespesen: 51.03,
+    eigenüberträge: 51.04,
+    online: 51.05,
+    rückerstattung: 51.06,
+    zinsen: 51.07,
+    crypto: 51.08,
+    invest: 51.09,
+    savings: 51.1,
+    zusatzeinkommenOther: 51.99,
+  },
+  otherEinkommen: {
+    id: 59,
+    otherEinkommen: 59.99,
   },
   unkategorisiert: unkategorisiert,
 };
