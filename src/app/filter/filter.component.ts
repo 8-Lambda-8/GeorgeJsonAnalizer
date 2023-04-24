@@ -9,6 +9,7 @@ export interface Filter {
   categories: Category[];
   startDate: Date;
   endDate: Date;
+  direction?: "in" | "out" | "both";
 }
 
 @Component({
@@ -18,6 +19,12 @@ export interface Filter {
 })
 export class FilterComponent implements OnInit {
   @Input() filter: Filter;
+  @Input()
+  filterFields: ("direction" | "categories" | "time")[] = [
+    "categories",
+    "time",
+  ];
+  @Input() allowBothDirections = false;
   @Output() filterChange = new EventEmitter<Filter>();
 
   selectedPreset = "1 Year";
@@ -56,7 +63,8 @@ export class FilterComponent implements OnInit {
     this.filter.transactions = this.transactionservice.getFiltered(
       this.filter.categories,
       this.filter.startDate,
-      this.filter.endDate
+      this.filter.endDate,
+      this.filter.direction
     );
     this.filterChange.emit(this.filter);
   }

@@ -1,0 +1,20 @@
+<app-filter
+  [(filter)]="filter"
+  (filterChange)="updateChart()"
+  [filterFields]="['direction', 'time']"
+></app-filter>
+<div #ChartModifier></div>
+
+<div style="width: 30rem; position: relative; padding: 1rem">
+  <canvas
+    baseChart
+    [data]="ChartData"
+    [type]="diagramType"
+    [options]="ChartOptions"
+  >
+  </canvas>
+</div>
+
+<app-transaction-list
+  [transactions]="filter.transactions"
+></app-transaction-list>
