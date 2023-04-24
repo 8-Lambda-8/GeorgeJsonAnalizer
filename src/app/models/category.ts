@@ -444,6 +444,11 @@ export const categoryTreeList: ICategory[] = [
         id: 11.04,
       },
       {
+        ident: "paypal",
+        name: "PayPal",
+        id: 11.05,
+      },
+      {
         ident: "onlineOther",
         name: "Online Shops, Sonstigens",
         id: 11.99,

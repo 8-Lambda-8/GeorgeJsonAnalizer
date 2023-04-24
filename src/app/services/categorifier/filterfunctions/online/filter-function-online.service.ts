@@ -9,6 +9,7 @@ export class FilterFunctionOnlineService {
   filterFunctions: ((transaction: Transaction) => Category | null)[] = [
     this.filterAliexpress,
     this.filterAmazon,
+    this.filterPayPal,
   ];
 
   public getFilter(): ((transaction: Transaction) => Category | null)[] {
@@ -24,6 +25,13 @@ export class FilterFunctionOnlineService {
 
   private filterAmazon(transaction: Transaction): Category | null {
     if (transaction.partnerName?.includes("AMAZON")) {
+      return new Category(categoryIds.online.amazon);
+    }
+    return null;
+  }
+
+  private filterPayPal(transaction: Transaction): Category | null {
+    if (transaction.partnerName?.toUpperCase().includes("PAYPAL")) {
       return new Category(categoryIds.online.amazon);
     }
     return null;
