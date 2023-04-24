@@ -6,6 +6,7 @@ import { FilterFunctionWohnenService } from "./filterfunctions/wohnen/filter-fun
 import { FilterFunctionEssenService } from "./filterfunctions/essen/filter-function-essen.service";
 import { FilterFunctionKommunikationService } from "./filterfunctions/kommunikation/filter-function-kommunikation.service";
 import { FilterFunctionGesundheitService } from "./filterfunctions/gesundheit/filter-function-gesundheit.service";
+import { FilterFunctionKfzService } from "./filterfunctions/kfz/filter-function-kfz.service";
 
 import { FilterFunctionZusatzeinkommenService } from "./filterfunctions/zusatzeinkommen/filter-function-zusatzeinkommen.service";
 
@@ -24,7 +25,8 @@ export class CategorifierService {
     essenFilter: FilterFunctionEssenService,
     kommunikationFilter: FilterFunctionKommunikationService,
     gesundheitFilter: FilterFunctionGesundheitService,
-    zusatzeinkommenFilter: FilterFunctionZusatzeinkommenService
+    zusatzeinkommenFilter: FilterFunctionZusatzeinkommenService,
+    kfzFilter: FilterFunctionKfzService
   ) {
     //filters for outgoing transactions
     wohnenFilter
@@ -37,6 +39,9 @@ export class CategorifierService {
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
     gesundheitFilter
+      .getFilter()
+      .forEach((filter) => this.outFilterFunctions.push(filter));
+    kfzFilter
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
 
