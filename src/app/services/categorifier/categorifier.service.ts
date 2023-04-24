@@ -7,6 +7,8 @@ import { FilterFunctionEssenService } from "./filterfunctions/essen/filter-funct
 import { FilterFunctionKommunikationService } from "./filterfunctions/kommunikation/filter-function-kommunikation.service";
 import { FilterFunctionGesundheitService } from "./filterfunctions/gesundheit/filter-function-gesundheit.service";
 
+import { FilterFunctionZusatzeinkommenService } from "./filterfunctions/zusatzeinkommen/filter-function-zusatzeinkommen.service";
+
 @Injectable({
   providedIn: "root",
 })
@@ -21,7 +23,8 @@ export class CategorifierService {
     wohnenFilter: FilterFunctionWohnenService,
     essenFilter: FilterFunctionEssenService,
     kommunikationFilter: FilterFunctionKommunikationService,
-    gesundheitFilter: FilterFunctionGesundheitService
+    gesundheitFilter: FilterFunctionGesundheitService,
+    zusatzeinkommenFilter: FilterFunctionZusatzeinkommenService
   ) {
     //filters for outgoing transactions
     wohnenFilter
@@ -38,6 +41,9 @@ export class CategorifierService {
       .forEach((filter) => this.outFilterFunctions.push(filter));
 
     //filters for ingoing transactions
+    zusatzeinkommenFilter
+      .getFilter()
+      .forEach((filter) => this.inFilterFunctions.push(filter));
   }
 
   private getMatchFromBasicRegex(transaction: Transaction): Category | null {
