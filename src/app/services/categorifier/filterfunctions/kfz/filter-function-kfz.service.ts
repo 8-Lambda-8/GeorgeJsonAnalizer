@@ -16,7 +16,10 @@ export class FilterFunctionKfzService {
   }
 
   private filterTreibstoff(transaction: Transaction): Category | null {
-    if (transaction.partnerName?.includes("DISK")) {
+    if (
+      transaction.partnerName?.includes("DISK") ||
+      transaction.partnerName?.includes("AVANTI")
+    ) {
       return new Category(categoryIds.kfz.treibstoff);
     }
     return null;
