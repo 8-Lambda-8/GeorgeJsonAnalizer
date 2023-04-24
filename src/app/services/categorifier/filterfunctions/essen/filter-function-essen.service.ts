@@ -16,9 +16,10 @@ export class FilterFunctionEssenService {
   }
 
   private filterEinkauf(transaction: Transaction): Category | null {
-    //just a basic filter as an example
-
-    if (transaction.partnerName?.includes("SPAR")) {
+    if (
+      transaction.partnerName?.includes("SPAR") ||
+      transaction.partnerName?.includes("BILLA")
+    ) {
       return new Category(categoryIds.essen.einkauf);
     }
     return null;
