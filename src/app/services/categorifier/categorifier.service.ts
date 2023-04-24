@@ -5,6 +5,7 @@ import { TransactionService } from "../transaction/transaction.service";
 import { FilterFunctionWohnenService } from "./filterfunctions/wohnen/filter-function-wohnen.service";
 import { FilterFunctionEssenService } from "./filterfunctions/essen/filter-function-essen.service";
 import { FilterFunctionKommunikationService } from "./filterfunctions/kommunikation/filter-function-kommunikation.service";
+import { FilterFunctionGesundheitService } from "./filterfunctions/gesundheit/filter-function-gesundheit.service";
 
 @Injectable({
   providedIn: "root",
@@ -19,6 +20,7 @@ export class CategorifierService {
     wohnenFilter: FilterFunctionWohnenService,
     essenFilter: FilterFunctionEssenService,
     kommunikationFilter: FilterFunctionKommunikationService,
+    gesundheitFilter: FilterFunctionGesundheitService
   ) {
     wohnenFilter
       .getFilter()
@@ -27,6 +29,9 @@ export class CategorifierService {
       .getFilter()
       .forEach((filter) => this.filterFunctions.push(filter));
     kommunikationFilter
+      .getFilter()
+      .forEach((filter) => this.filterFunctions.push(filter));
+    gesundheitFilter
       .getFilter()
       .forEach((filter) => this.filterFunctions.push(filter));
   }
