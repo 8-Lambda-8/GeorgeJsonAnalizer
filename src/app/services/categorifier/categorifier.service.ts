@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Category } from "src/app/models/category";
 import { Transaction } from "../../models/transaction";
-import { FilterFunctionWohnenService } from "./filterfunctions/wohnen/filter-function-wohnen.service";
-import { FilterFunctionKommunikationService } from "./filterfunctions/kommunikation/filter-function-kommunikation.service";
 import { TransactionService } from "../transaction/transaction.service";
+import { FilterFunctionWohnenService } from "./filterfunctions/wohnen/filter-function-wohnen.service";
+import { FilterFunctionEssenService } from "./filterfunctions/essen/filter-function-essen.service";
+import { FilterFunctionKommunikationService } from "./filterfunctions/kommunikation/filter-function-kommunikation.service";
 
 @Injectable({
   providedIn: "root",
@@ -16,9 +17,13 @@ export class CategorifierService {
   constructor(
     private transactionService: TransactionService,
     wohnenFilter: FilterFunctionWohnenService,
-    kommunikationFilter: FilterFunctionKommunikationService
+    essenFilter: FilterFunctionEssenService,
+    kommunikationFilter: FilterFunctionKommunikationService,
   ) {
     wohnenFilter
+      .getFilter()
+      .forEach((filter) => this.filterFunctions.push(filter));
+    essenFilter
       .getFilter()
       .forEach((filter) => this.filterFunctions.push(filter));
     kommunikationFilter
