@@ -17,6 +17,7 @@ export class CategoryCakeComponent {
 
   public ChartOptions: ChartConfiguration["options"] = {
     aspectRatio: 1,
+    layout: { padding: 15 },
     plugins: {
       legend: { display: false },
       tooltip: {
@@ -46,6 +47,7 @@ export class CategoryCakeComponent {
         data: new Array<number>(61).fill(0),
         backgroundColor: getColorArray(),
         hoverBackgroundColor: getColorArray(),
+        hoverOffset: 20,
       },
     ],
   };
