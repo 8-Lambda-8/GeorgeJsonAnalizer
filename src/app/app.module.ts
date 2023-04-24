@@ -29,6 +29,7 @@ import { FilteredListComponent } from "./filtered-list/filtered-list.component";
 import { AnalyzerComponent } from "./analyzer/analyzer.component";
 import { CashflowComponent } from "./analyzer/cashflow/cashflow.component";
 import { FilterComponent } from "./filter/filter.component";
+import { CategoryCakeComponent } from "./analyzer/category-cake/category-cake/category-cake.component";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FilterComponent } from "./filter/filter.component";
     AnalyzerComponent,
     CashflowComponent,
     FilterComponent,
+    CategoryCakeComponent,
   ],
   imports: [
     BrowserModule,
