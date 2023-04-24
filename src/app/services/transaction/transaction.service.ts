@@ -66,7 +66,8 @@ export class TransactionService {
       }
       if (
         cats.length > 0 &&
-        !cats.some((c) => t.categories?.categoryId == c.categoryId)
+        !cats.some((c) => t.categories?.categoryId == c.categoryId) &&
+        !(cats.some((c) => c.categoryId === 99) && t.categories == null)
       )
         return false;
       if (
