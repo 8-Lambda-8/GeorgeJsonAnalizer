@@ -64,13 +64,13 @@ export class CategoryCakeComponent {
   updateChart() {
     if (this.filter === undefined) return;
 
-    this.ChartData.labels = new Array(101);
-    this.ChartData.datasets[0].data = new Array<number>(101).fill(0);
+    this.ChartData.labels = new Array(61);
+    this.ChartData.datasets[0].data = new Array<number>(61).fill(0);
 
     for (const c of categoryTreeList) {
       if (c.id) this.ChartData.labels[c.id] = c.name;
     }
-    this.ChartData.labels[100] = unkategorisiert.name;
+    this.ChartData.labels[60] = unkategorisiert.name;
 
     console.log(this.ChartData.labels);
 
@@ -78,10 +78,10 @@ export class CategoryCakeComponent {
       if (t.categories) {
         this.ChartData.datasets[0].data[Math.floor(t.categories.categoryId)] +=
           t.amount.valueFloat;
-      } else this.ChartData.datasets[0].data[100] += t.amount.valueFloat;
+      } else this.ChartData.datasets[0].data[60] += t.amount.valueFloat;
     }
 
-    console.log(this.ChartData.datasets[0].data[100]);
+    console.log(this.ChartData.datasets[0].data[60]);
 
     this.chart?.update();
   }
