@@ -4,12 +4,13 @@ import { Transaction } from "../../models/transaction";
 import { TransactionService } from "../transaction/transaction.service";
 import { FilterFunctionWohnenService } from "./filterfunctions/wohnen/filter-function-wohnen.service";
 import { FilterFunctionEssenService } from "./filterfunctions/essen/filter-function-essen.service";
-import { FilterFunctionKommunikationService } from "./filterfunctions/kommunikation/filter-function-kommunikation.service";
+import { FilterFunctionBekleidungService } from "./filterfunctions/bekleidung/filter-function-bekleidung.service";
 import { FilterFunctionGesundheitService } from "./filterfunctions/gesundheit/filter-function-gesundheit.service";
+import { FilterFunctionKommunikationService } from "./filterfunctions/kommunikation/filter-function-kommunikation.service";
 import { FilterFunctionKfzService } from "./filterfunctions/kfz/filter-function-kfz.service";
+import { FilterFunctionOnlineService } from "./filterfunctions/online/filter-function-online.service";
 
 import { FilterFunctionZusatzeinkommenService } from "./filterfunctions/zusatzeinkommen/filter-function-zusatzeinkommen.service";
-import { FilterFunctionOnlineService } from "./filterfunctions/online/filter-function-online.service";
 
 @Injectable({
   providedIn: "root",
@@ -24,6 +25,7 @@ export class CategorifierService {
     private transactionService: TransactionService,
     wohnenFilter: FilterFunctionWohnenService,
     essenFilter: FilterFunctionEssenService,
+    bekleidungFilter: FilterFunctionBekleidungService,
     gesundheitFilter: FilterFunctionGesundheitService,
     kommunikationFilter: FilterFunctionKommunikationService,
     kfzFilter: FilterFunctionKfzService,
@@ -38,6 +40,9 @@ export class CategorifierService {
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
     gesundheitFilter //2
+      .getFilter()
+      .forEach((filter) => this.outFilterFunctions.push(filter));
+    bekleidungFilter //3
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
     kommunikationFilter //4
