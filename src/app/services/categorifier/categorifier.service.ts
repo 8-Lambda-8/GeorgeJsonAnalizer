@@ -13,6 +13,7 @@ import { FilterFunctionSparenService } from "./filterfunctions/sparen/filter-fun
 import { FilterFunctionZahlungService } from "./filterfunctions/zahlung/filter-function-zahlung.service";
 import { FilterFunctionOtherService } from "./filterfunctions/other/filter-function-other.service";
 
+import { FilterFunctionEinkommenService } from "./filterfunctions/einkommen/filter-function-einkommen.service";
 import { FilterFunctionZusatzeinkommenService } from "./filterfunctions/zusatzeinkommen/filter-function-zusatzeinkommen.service";
 
 @Injectable({
@@ -37,6 +38,7 @@ export class CategorifierService {
     zahlungFilter: FilterFunctionZahlungService,
     otherFilter: FilterFunctionOtherService,
 
+    einkommenFilter: FilterFunctionEinkommenService,
     zusatzeinkommenFilter: FilterFunctionZusatzeinkommenService
   ) {
     //filters for outgoing transactions
@@ -72,6 +74,9 @@ export class CategorifierService {
       .forEach((filter) => this.outFilterFunctions.push(filter));
 
     //filters for ingoing transactions
+    einkommenFilter
+      .getFilter()
+      .forEach((filter) => this.inFilterFunctions.push(filter));
     zusatzeinkommenFilter
       .getFilter()
       .forEach((filter) => this.inFilterFunctions.push(filter));
