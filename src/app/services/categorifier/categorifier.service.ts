@@ -9,6 +9,7 @@ import { FilterFunctionGesundheitService } from "./filterfunctions/gesundheit/fi
 import { FilterFunctionKfzService } from "./filterfunctions/kfz/filter-function-kfz.service";
 
 import { FilterFunctionZusatzeinkommenService } from "./filterfunctions/zusatzeinkommen/filter-function-zusatzeinkommen.service";
+import { FilterFunctionOnlineService } from "./filterfunctions/online/filter-function-online.service";
 
 @Injectable({
   providedIn: "root",
@@ -26,6 +27,7 @@ export class CategorifierService {
     gesundheitFilter: FilterFunctionGesundheitService,
     kommunikationFilter: FilterFunctionKommunikationService,
     kfzFilter: FilterFunctionKfzService,
+    onlineFilter: FilterFunctionOnlineService,
     zusatzeinkommenFilter: FilterFunctionZusatzeinkommenService
   ) {
     //filters for outgoing transactions
@@ -42,6 +44,9 @@ export class CategorifierService {
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
     kfzFilter //7
+      .getFilter()
+      .forEach((filter) => this.outFilterFunctions.push(filter));
+    onlineFilter //11
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
 
