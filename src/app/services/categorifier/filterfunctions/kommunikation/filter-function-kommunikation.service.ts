@@ -9,6 +9,7 @@ export class FilterFunctionKommunikationService {
   //add all functions here
   filterFunctions: ((transaction: Transaction) => Category | null)[] = [
     this.filterTV,
+    this.filterTelefon,
   ];
 
   public getFilter(): ((transaction: Transaction) => Category | null)[] {
@@ -16,10 +17,15 @@ export class FilterFunctionKommunikationService {
   }
 
   private filterTV(transaction: Transaction): Category | null {
-    //just a basic filter as an example
-
     if (transaction.partnerName?.includes("NETFLIX")) {
       return new Category(categoryIds.kommunikation.tv);
+    }
+    return null;
+  }
+
+  private filterTelefon(transaction: Transaction): Category | null {
+    if (transaction.partnerName?.toUpperCase().includes("TELEKOM")) {
+      return new Category(categoryIds.kommunikation.telefon);
     }
     return null;
   }
