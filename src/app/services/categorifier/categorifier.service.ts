@@ -11,7 +11,8 @@ import { FilterFunctionGesundheitService } from "./filterfunctions/gesundheit/fi
   providedIn: "root",
 })
 export class CategorifierService {
-  filterFunctions: ((transaction: Transaction) => Category | null)[] = [];
+  outFilterFunctions: ((transaction: Transaction) => Category | null)[] = [];
+  inFilterFunctions: ((transaction: Transaction) => Category | null)[] = [];
 
   //TODO add all other filter (see categories)
 
@@ -22,28 +23,40 @@ export class CategorifierService {
     kommunikationFilter: FilterFunctionKommunikationService,
     gesundheitFilter: FilterFunctionGesundheitService
   ) {
+    //filters for outgoing transactions
     wohnenFilter
       .getFilter()
-      .forEach((filter) => this.filterFunctions.push(filter));
+      .forEach((filter) => this.outFilterFunctions.push(filter));
     essenFilter
       .getFilter()
-      .forEach((filter) => this.filterFunctions.push(filter));
+      .forEach((filter) => this.outFilterFunctions.push(filter));
     kommunikationFilter
       .getFilter()
-      .forEach((filter) => this.filterFunctions.push(filter));
+      .forEach((filter) => this.outFilterFunctions.push(filter));
     gesundheitFilter
       .getFilter()
-      .forEach((filter) => this.filterFunctions.push(filter));
+      .forEach((filter) => this.outFilterFunctions.push(filter));
+
+    //filters for ingoing transactions
   }
 
   private getMatchFromBasicRegex(transaction: Transaction): Category | null {
-    for (const filter of this.filterFunctions) {
-      const category = filter(transaction);
-      if (category != null) {
-        //found a category
-        return category;
+    if (transaction.amount.value < 0)
+      for (const filter of this.outFilterFunctions) {
+        const category = filter(transaction);
+        if (category != null) {
+          //found a category
+          return category;
+        }
       }
-    }
+    else
+      for (const filter of this.inFilterFunctions) {
+        const category = filter(transaction);
+        if (category != null) {
+          //found a category
+          return category;
+        }
+      }
 
     //found nothing
     return null;
