@@ -23,25 +23,25 @@ export class CategorifierService {
     private transactionService: TransactionService,
     wohnenFilter: FilterFunctionWohnenService,
     essenFilter: FilterFunctionEssenService,
-    kommunikationFilter: FilterFunctionKommunikationService,
     gesundheitFilter: FilterFunctionGesundheitService,
-    zusatzeinkommenFilter: FilterFunctionZusatzeinkommenService,
-    kfzFilter: FilterFunctionKfzService
+    kommunikationFilter: FilterFunctionKommunikationService,
+    kfzFilter: FilterFunctionKfzService,
+    zusatzeinkommenFilter: FilterFunctionZusatzeinkommenService
   ) {
     //filters for outgoing transactions
-    wohnenFilter
+    wohnenFilter //0
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
-    essenFilter
+    essenFilter //1
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
-    kommunikationFilter
+    gesundheitFilter //2
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
-    gesundheitFilter
+    kommunikationFilter //4
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
-    kfzFilter
+    kfzFilter //7
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
 
