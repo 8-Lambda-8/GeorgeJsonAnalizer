@@ -10,6 +10,7 @@ import { FilterFunctionKommunikationService } from "./filterfunctions/kommunikat
 import { FilterFunctionKfzService } from "./filterfunctions/kfz/filter-function-kfz.service";
 import { FilterFunctionOnlineService } from "./filterfunctions/online/filter-function-online.service";
 import { FilterFunctionSparenService } from "./filterfunctions/sparen/filter-function-sparen.service";
+import { FilterFunctionOtherService } from "./filterfunctions/other/filter-function-other.service";
 
 import { FilterFunctionZusatzeinkommenService } from "./filterfunctions/zusatzeinkommen/filter-function-zusatzeinkommen.service";
 
@@ -32,6 +33,7 @@ export class CategorifierService {
     kfzFilter: FilterFunctionKfzService,
     onlineFilter: FilterFunctionOnlineService,
     sparenFilter: FilterFunctionSparenService,
+    otherFilter: FilterFunctionOtherService,
 
     zusatzeinkommenFilter: FilterFunctionZusatzeinkommenService
   ) {
@@ -58,6 +60,9 @@ export class CategorifierService {
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
     sparenFilter //12
+      .getFilter()
+      .forEach((filter) => this.outFilterFunctions.push(filter));
+    otherFilter //49
       .getFilter()
       .forEach((filter) => this.outFilterFunctions.push(filter));
 
