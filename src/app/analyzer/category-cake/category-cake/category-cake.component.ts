@@ -16,10 +16,17 @@ export class CategoryCakeComponent {
   diagramType: ChartType = "doughnut";
 
   public ChartOptions: ChartConfiguration["options"] = {
-    aspectRatio: 1,
+    aspectRatio: 1.6,
     layout: { padding: 15 },
     plugins: {
-      legend: { display: false },
+      legend: {
+        position: "left",
+        labels: {
+          filter: (legendItem) =>
+            !!legendItem.text &&
+            !!this.ChartData.datasets[0].data[legendItem.index ?? 0],
+        },
+      },
       tooltip: {
         mode: "index",
         callbacks: {
@@ -47,6 +54,9 @@ export class CategoryCakeComponent {
         data: new Array<number>(61).fill(0),
         backgroundColor: getColorArray(),
         hoverBackgroundColor: getColorArray(),
+        borderWidth: 0,
+        hoverBorderWidth: 3,
+        hoverBorderColor: "black",
         hoverOffset: 20,
       },
     ],
